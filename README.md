@@ -7,11 +7,11 @@
 
 #### 默认样式:
 
-![](https://github.com/Chouee/TTIndexBar/blob/master/ScreenShot.gif)
+![](https://github.com/Chouee/TTPlaceholderView/blob/master/screenshot1.png)
 
 #### 自定义样式:
 
-![](https://github.com/Chouee/TTIndexBar/blob/master/ScreenShot2.gif)
+![](https://github.com/Chouee/TTPlaceholderView/blob/master/screenshot2.png)
 
 ## How to use
 
