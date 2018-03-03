@@ -17,8 +17,9 @@
 
 #### 默认样式占位图:
 
-默认字体颜色
+
 ```
+//默认字体颜色
 [self.view tt_showPlaceholderViewWithImageName:@"无网络.png" title:@"点我重新加载~" attributes:nil reloadBlock:^{
         
         //处理点击事件
@@ -26,9 +27,9 @@
  }];
 ```
 
-添加富文本属性:
-```
 
+```
+//添加富文本属性:
 NSDictionary *attributes = @{
                              NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
                              NSForegroundColorAttributeName:[UIColor orangeColor]
@@ -40,3 +41,15 @@ NSDictionary *attributes = @{
         
  }];
 ```
+
+#### 自定义占位图：
+
+```
+
+CustomView *customView = [CustomView customView];
+    customView.frame = [UIScreen mainScreen].bounds;
+    [self.view tt_showCustomPlaceholderView:customView reloadBlock:^{
+        //处理点击事件
+    }];
+```
+
