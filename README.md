@@ -15,7 +15,9 @@
 
 ## How to use
 
-//默认样式占位图
+#### 默认样式占位图:
+
+默认字体颜色
 ```
 [self.view tt_showPlaceholderViewWithImageName:@"无网络.png" title:@"点我重新加载~" attributes:nil reloadBlock:^{
         
@@ -24,9 +26,9 @@
  }];
 ```
 
-Custom:
+添加富文本属性:
 ```
-//添加富文本属性
+
 NSDictionary *attributes = @{
                              NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
                              NSForegroundColorAttributeName:[UIColor orangeColor]
