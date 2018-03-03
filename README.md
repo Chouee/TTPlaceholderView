@@ -5,6 +5,14 @@
 对于ScrollView这种可滚动的控件，一般使用DZNEmptyDataSet设置占位图，但是对于UIView，我找了好久都没找到合适的轮子，
 所以自己造了一个。给UIView添加了一个类别，可以很方便的给UIView设置占位图。
 
+#### 默认样式:
+
+![](https://github.com/Chouee/TTPlaceholderView/blob/master/screenshot1.png)
+
+#### 自定义样式:
+
+![](https://github.com/Chouee/TTPlaceholderView/blob/master/screenshot2.png)
+
 ## How to use
 
 Default:
