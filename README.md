@@ -13,10 +13,9 @@
 
 ![](https://github.com/Chouee/TTPlaceholderView/blob/master/screenshot2.png)
 
-## How to use
+## 如何使用
 
 #### 默认样式占位图:
-
 
 ```
 //默认字体颜色
@@ -26,7 +25,6 @@
         
  }];
 ```
-
 
 ```
 //添加富文本属性:
@@ -45,11 +43,10 @@ NSDictionary *attributes = @{
 #### 自定义占位图：
 
 ```
-
 CustomView *customView = [CustomView customView];
-    customView.frame = [UIScreen mainScreen].bounds;
-    [self.view tt_showCustomPlaceholderView:customView reloadBlock:^{
+customView.frame = [UIScreen mainScreen].bounds;
+[self.view tt_showCustomPlaceholderView:customView reloadBlock:^{
         //处理点击事件
-    }];
+}];
 ```
 
