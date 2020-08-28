@@ -12,8 +12,11 @@
 
 @interface UIView()
 
+@property (nonatomic, strong, readonly) UIView *tt_placeholderView;
+/// 记录当前视图是否可滚动
 @property (nonatomic, assign) BOOL tt_oriScrollEnable;
-@property (nonatomic, copy) void (^tt_reloadBlock)(void);
+/// 缓存点击操作
+@property (nonatomic, copy) void (^tt_click)(void);
 
 @end
 
@@ -22,52 +25,22 @@
 
 static void *placeholderViewKey = &placeholderViewKey;
 static void *originalScrollEnabledKey = &originalScrollEnabledKey;
-static void *reloadBlockKey = &reloadBlockKey;
+static void *clickKey = &clickKey;
 
-#pragma mark - 动态添加存取方法
-
-- (UIView *)tt_placeholderView
-{
-    return objc_getAssociatedObject(self, &placeholderViewKey);
-}
-
-- (void)setTt_placeholderView:(UIView *)tt_placeholderView
-{
-    objc_setAssociatedObject(self, &placeholderViewKey, tt_placeholderView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (BOOL)tt_oriScrollEnable
-{
-    return [objc_getAssociatedObject(self, &originalScrollEnabledKey) boolValue];
-}
-
-- (void)setTt_oriScrollEnable:(BOOL)tt_oriScrollEnable
-{
-    objc_setAssociatedObject(self, &originalScrollEnabledKey, @(tt_oriScrollEnable), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-}
-
-- (void (^)(void))tt_reloadBlock
-{
-    return objc_getAssociatedObject(self, &reloadBlockKey);
-}
-
-- (void)setTt_reloadBlock:(void (^)(void))tt_reloadBlock
-{
-    objc_setAssociatedObject(self, &reloadBlockKey, tt_reloadBlock, OBJC_ASSOCIATION_COPY_NONATOMIC);
-}
+#pragma mark - Public
 
 /**
  显示固定样式视图
  */
-- (void)tt_showPlaceholderViewWithImageName:(NSString *)imageName title:(NSString *)title attributes:(NSDictionary *)attributes reloadBlock:(void(^)(void))reloadBlock
+- (void)tt_showPlaceholderViewWithImageName:(NSString *)imageName title:(NSString *)title attributes:(NSDictionary *)attributes click:(void(^)(void))click
 {
-    self.tt_reloadBlock = reloadBlock;
+    self.tt_click = click;
     
     if (attributes == nil) {
         attributes = @{
-                       NSFontAttributeName:[UIFont systemFontOfSize:15.0f],
-                       NSForegroundColorAttributeName:[UIColor lightGrayColor]
-                       };
+            NSFontAttributeName:[UIFont systemFontOfSize:15.0f],
+            NSForegroundColorAttributeName:[UIColor lightGrayColor]
+        };
     }
     
     if ([self isKindOfClass:[UIScrollView class]]) {
@@ -138,9 +111,9 @@ static void *reloadBlockKey = &reloadBlockKey;
 /**
  显示自定义样式视图
  */
-- (void)tt_showCustomPlaceholderView:(UIView *)customView reloadBlock:(void(^)(void))reloadBlock
+- (void)tt_showCustomPlaceholderView:(UIView *)customView click:(void(^)(void))click
 {
-    self.tt_reloadBlock = reloadBlock;
+    self.tt_click = click;
     
     if ([self isKindOfClass:[UIScrollView class]]) {
         UIScrollView *scrollView = (UIScrollView *)self;
@@ -165,7 +138,7 @@ static void *reloadBlockKey = &reloadBlockKey;
     CGFloat containX = (self.tt_placeholderView.bounds.size.width - containW) * 0.5;
     containView.frame = CGRectMake(containX, containY, containW, containH);
     [self.tt_placeholderView addSubview:containView];
-
+    
     CGFloat customW = CGRectGetWidth(customView.frame);
     CGFloat customH = CGRectGetHeight(customView.frame);
     CGFloat customX = (containW - customW) * 0.5;
@@ -191,12 +164,77 @@ static void *reloadBlockKey = &reloadBlockKey;
     }
 }
 
+#pragma mark - Convinence Method
+
+/**
+ 服务端错误
+ */
+- (void)tt_showServerErrorWithclick:(void(^)(void))click {
+    //富文本属性
+    //    NSDictionary *attributes = @{
+    //                                 NSFontAttributeName:[UIFont systemFontOfSize:20.0f],
+    //                                 NSForegroundColorAttributeName:[UIColor orangeColor]
+    //                                 };
+    [self tt_showPlaceholderViewWithImageName:@"bg-server-error" title:@"服务器错误" attributes:nil click:click];
+}
+
+/**
+ 网络错误
+ */
+- (void)tt_showNetworkErrorWithclick:(void(^)(void))click {
+    [self tt_showPlaceholderViewWithImageName:@"bg-no-network" title:@"无法连接网络，请检查您的网络设置" attributes:nil click:click];
+}
+
+/**
+ 空白占位图
+ */
+- (void)tt_showBlankWithclick:(void(^)(void))click {
+    [self tt_showPlaceholderViewWithImageName:@"bg-no-data" title:@"这里空空如也" attributes:nil click:click];
+}
+
+#pragma mark - Private
+
+
+/// associate
+- (UIView *)tt_placeholderView
+{
+    return objc_getAssociatedObject(self, &placeholderViewKey);
+}
+
+- (void)setTt_placeholderView:(UIView *)tt_placeholderView
+{
+    objc_setAssociatedObject(self, &placeholderViewKey, tt_placeholderView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)tt_oriScrollEnable
+{
+    return [objc_getAssociatedObject(self, &originalScrollEnabledKey) boolValue];
+}
+
+- (void)setTt_oriScrollEnable:(BOOL)tt_oriScrollEnable
+{
+    objc_setAssociatedObject(self, &originalScrollEnabledKey, @(tt_oriScrollEnable), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void (^)(void))tt_click
+{
+    return objc_getAssociatedObject(self, &clickKey);
+}
+
+- (void)setTt_click:(void (^)(void))tt_click
+{
+    objc_setAssociatedObject(self, &clickKey, tt_click, OBJC_ASSOCIATION_COPY_NONATOMIC);
+}
+
+
 /**
  点击事件
  */
 - (void)tap {
-    if (self.tt_reloadBlock) {
-        self.tt_reloadBlock();
+    [self tt_removePlaceholderView];
+    
+    if (self.tt_click) {
+        self.tt_click();
     }
 }
 

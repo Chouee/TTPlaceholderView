@@ -19,6 +19,10 @@
 		A076E44F2043FFB3002244A0 /* pic@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = A076E44E2043FFB3002244A0 /* pic@2x.jpg */; };
 		A076E45120440088002244A0 /* pic2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A076E45020440088002244A0 /* pic2@2x.png */; };
 		A076E453204401F8002244A0 /* 无网络@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A076E452204401F8002244A0 /* 无网络@2x.png */; };
+		AC93AAF324F8FC46005C1502 /* FixedSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC93AAF224F8FC46005C1502 /* FixedSecondViewController.m */; };
+		AC93AAF724F8FCB0005C1502 /* FixedFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC93AAF524F8FCB0005C1502 /* FixedFirstViewController.m */; };
+		AC93AAF824F8FCB0005C1502 /* FixedFirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC93AAF624F8FCB0005C1502 /* FixedFirstViewController.xib */; };
+		AC93AAFC24F8FF93005C1502 /* CustomedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC93AAFB24F8FF93005C1502 /* CustomedViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +44,13 @@
 		A076E44E2043FFB3002244A0 /* pic@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "pic@2x.jpg"; sourceTree = "<group>"; };
 		A076E45020440088002244A0 /* pic2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pic2@2x.png"; sourceTree = "<group>"; };
 		A076E452204401F8002244A0 /* 无网络@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "无网络@2x.png"; sourceTree = "<group>"; };
+		AC93AAF124F8FC46005C1502 /* FixedSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FixedSecondViewController.h; sourceTree = "<group>"; };
+		AC93AAF224F8FC46005C1502 /* FixedSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FixedSecondViewController.m; sourceTree = "<group>"; };
+		AC93AAF424F8FCB0005C1502 /* FixedFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FixedFirstViewController.h; sourceTree = "<group>"; };
+		AC93AAF524F8FCB0005C1502 /* FixedFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FixedFirstViewController.m; sourceTree = "<group>"; };
+		AC93AAF624F8FCB0005C1502 /* FixedFirstViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FixedFirstViewController.xib; sourceTree = "<group>"; };
+		AC93AAFA24F8FF93005C1502 /* CustomedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomedViewController.h; sourceTree = "<group>"; };
+		AC93AAFB24F8FF93005C1502 /* CustomedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomedViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,12 +87,7 @@
 				A076E43E2043ECAD002244A0 /* UIView+TTPlaceholderView.m */,
 				A076E4282043EC59002244A0 /* AppDelegate.h */,
 				A076E4292043EC59002244A0 /* AppDelegate.m */,
-				A076E42B2043EC59002244A0 /* ViewController.h */,
-				A076E42C2043EC59002244A0 /* ViewController.m */,
-				A076E4452043FAD4002244A0 /* CustomView.h */,
-				A076E4462043FAD4002244A0 /* CustomView.m */,
-				A076E4432043FAC7002244A0 /* CustomView.xib */,
-				A076E42E2043EC59002244A0 /* Main.storyboard */,
+				AC93AAF924F8FE9F005C1502 /* UI */,
 				A076E4312043EC59002244A0 /* Assets.xcassets */,
 				A076E4332043EC59002244A0 /* LaunchScreen.storyboard */,
 				A076E4362043EC59002244A0 /* Info.plist */,
@@ -99,6 +105,26 @@
 				A076E44E2043FFB3002244A0 /* pic@2x.jpg */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		AC93AAF924F8FE9F005C1502 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				A076E42B2043EC59002244A0 /* ViewController.h */,
+				A076E42C2043EC59002244A0 /* ViewController.m */,
+				AC93AAF424F8FCB0005C1502 /* FixedFirstViewController.h */,
+				AC93AAF524F8FCB0005C1502 /* FixedFirstViewController.m */,
+				AC93AAF624F8FCB0005C1502 /* FixedFirstViewController.xib */,
+				AC93AAF124F8FC46005C1502 /* FixedSecondViewController.h */,
+				AC93AAF224F8FC46005C1502 /* FixedSecondViewController.m */,
+				AC93AAFA24F8FF93005C1502 /* CustomedViewController.h */,
+				AC93AAFB24F8FF93005C1502 /* CustomedViewController.m */,
+				A076E4452043FAD4002244A0 /* CustomView.h */,
+				A076E4462043FAD4002244A0 /* CustomView.m */,
+				A076E4432043FAC7002244A0 /* CustomView.xib */,
+				A076E42E2043EC59002244A0 /* Main.storyboard */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,6 +189,7 @@
 				A076E4442043FAC7002244A0 /* CustomView.xib in Resources */,
 				A076E45120440088002244A0 /* pic2@2x.png in Resources */,
 				A076E4322043EC59002244A0 /* Assets.xcassets in Resources */,
+				AC93AAF824F8FCB0005C1502 /* FixedFirstViewController.xib in Resources */,
 				A076E4302043EC59002244A0 /* Main.storyboard in Resources */,
 				A076E453204401F8002244A0 /* 无网络@2x.png in Resources */,
 				A076E44F2043FFB3002244A0 /* pic@2x.jpg in Resources */,
@@ -177,6 +204,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				A076E4472043FAD4002244A0 /* CustomView.m in Sources */,
+				AC93AAF324F8FC46005C1502 /* FixedSecondViewController.m in Sources */,
+				AC93AAF724F8FCB0005C1502 /* FixedFirstViewController.m in Sources */,
+				AC93AAFC24F8FF93005C1502 /* CustomedViewController.m in Sources */,
 				A076E42D2043EC59002244A0 /* ViewController.m in Sources */,
 				A076E4382043EC59002244A0 /* main.m in Sources */,
 				A076E42A2043EC59002244A0 /* AppDelegate.m in Sources */,
@@ -254,7 +284,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -303,7 +333,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
